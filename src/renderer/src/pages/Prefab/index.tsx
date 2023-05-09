@@ -1,11 +1,10 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import useCols from '@/hooks/useCols';
 
 import ImageAbstract from '@/assets/prefabs/Abstract.jpg';
 import ImageArchitecture from '@/assets/prefabs/Architecture.jpg';
@@ -35,19 +34,7 @@ const gallery: Record<string, any> = {
 
 export const Prefab: FC = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.up('xs'));
-  const isSm = useMediaQuery(theme.breakpoints.up('sm'));
-  const isMd = useMediaQuery(theme.breakpoints.up('md'));
-  const isLg = useMediaQuery(theme.breakpoints.up('lg'));
-  const isXl = useMediaQuery(theme.breakpoints.up('xl'));
-  const cols = useMemo(() => {
-    if (isXl) return 5;
-    if (isLg) return 4;
-    if (isMd) return 3;
-    if (isSm) return 2;
-    if (isXs) return 1;
-  }, [isXs, isSm, isMd, isLg, isXl]);
+  const cols = useCols();
 
   return (
     <Box
@@ -61,7 +48,7 @@ export const Prefab: FC = () => {
           height: '100%',
           margin: 0,
           gap: 0,
-          background: 'linear-gradient(to right, #3874cb, #3874cb)',
+          backgroundImage: 'var(--background-image)',
         }}
       >
         {Object.keys(gallery).map((imageName) => (

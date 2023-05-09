@@ -1,19 +1,9 @@
-import { createClient } from 'pexels';
-
+import { createClient, PhotosWithTotalResults, ErrorResponse } from 'pexels';
+import { IFetchParams, ISearchResponse } from './type';
 const token = 'nuG7ybKE4sSVMGGhs1EfU22cHknAKEF2kquAFQ8vcHP6OM2GNSphpDGt';
 const client = createClient(token);
 
-interface FetchParams {
-  query: string;
-  orientation?: 'landscape' | 'portrait' | 'square';
-  size?: 'large' | 'medium' | 'small';
-  color?: string;
-  locale?: string;
-  page?: number;
-  per_page?: number;
-}
-
-const defaultParams: FetchParams = {
+const defaultParams: IFetchParams = {
   query: 'Ocean',
   orientation: 'landscape',
   size: 'large',
@@ -23,7 +13,7 @@ const defaultParams: FetchParams = {
   per_page: 30,
 };
 
-export async function fetchPhoto({ query }: FetchParams) {
+export async function fetchPhoto({ query }: IFetchParams) {
   const params = {
     ...defaultParams,
     query,

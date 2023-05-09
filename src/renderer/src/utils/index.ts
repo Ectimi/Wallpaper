@@ -11,3 +11,15 @@ export const genUid = (function () {
     return id.join('');
   };
 })();
+
+export const throttle = (fn: Function, delay: number = 100) => {
+  let timer: NodeJS.Timeout | null = null;
+  return (...params: any) => {
+    if (!timer) {
+      timer = setTimeout(() => {
+        fn(...params);
+        timer = null;
+      }, delay);
+    }
+  };
+};

@@ -54,11 +54,9 @@ function AppRoutes() {
           classNames="page"
           unmountOnExit
         >
-          {() => (
-            <div ref={nodeRef} className="page">
-              {currentOutlet}
-            </div>
-          )}
+          <div ref={nodeRef} className="page">
+            {currentOutlet}
+          </div>
         </CSSTransition>
       </SwitchTransition>
     </AppLayout>
