@@ -9,7 +9,14 @@ import {
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { AppLayout } from '@/components/AppLayout';
 import { Prefab } from '@/pages/Prefab';
+import {Detail} from '@/pages/Detail'
 import { List } from '@/pages/List';
+import {Favorite} from "@/pages/Favorite";
+import {Random} from "@/pages/Random";
+import {Search} from "@/pages/Search";
+import {Collect} from "@/pages/Collect";
+import {About} from "@/pages/About";
+import {Setting} from '@/pages/Setting'
 import './index.less';
 
 type RouteItem = RouteObject & { nodeRef: RefObject<any> };
@@ -20,8 +27,43 @@ const routes: RouteItem[] = [
     nodeRef: createRef(),
   },
   {
+    path: '/detail',
+    element: <Detail />,
+    nodeRef: createRef(),
+  },
+  {
     path: '/list/:type',
     element: <List />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/favorite',
+    element: <Favorite />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/random',
+    element: <Random />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/search',
+    element: <Search />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/collect',
+    element: <Collect />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/about',
+    element: <About />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/setting',
+    element: <Setting />,
     nodeRef: createRef(),
   },
 ];

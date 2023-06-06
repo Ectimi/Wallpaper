@@ -19,17 +19,17 @@ import ImageSpace from '@/assets/prefabs/Space.jpg';
 import ImageSunset from '@/assets/prefabs/Sunset.jpg';
 
 const gallery: Record<string, any> = {
-  Abstract: ImageAbstract,
-  Architecture: ImageArchitecture,
-  Beach: ImageBeach,
-  Car: ImageCar,
-  Cartoon: ImageCartoon,
-  Cat: ImageCat,
-  Dog: ImageDog,
-  Landscape: ImageLandscape,
-  Nature: ImageNature,
-  Space: ImageSpace,
-  Sunset: ImageSunset,
+  抽象: ImageAbstract,
+  建筑: ImageArchitecture,
+  沙滩: ImageBeach,
+  汽车: ImageCar,
+  卡通: ImageCartoon,
+  猫: ImageCat,
+  狗: ImageDog,
+  风景: ImageLandscape,
+  自然: ImageNature,
+  太空: ImageSpace,
+  日落: ImageSunset,
 };
 
 export const Prefab: FC = () => {
@@ -44,11 +44,11 @@ export const Prefab: FC = () => {
     >
       <ImageList
         cols={cols}
-        style={{
+        sx={{
           height: '100%',
           margin: 0,
           gap: 0,
-          backgroundImage: 'var(--background-image)',
+          backgroundImage: theme=>theme.linearGradient.main,
         }}
       >
         {Object.keys(gallery).map((imageName) => (

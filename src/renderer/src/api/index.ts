@@ -1,23 +1,27 @@
-import { createClient, PhotosWithTotalResults, ErrorResponse } from 'pexels';
-import { IFetchParams, ISearchResponse } from './type';
-const token = 'nuG7ybKE4sSVMGGhs1EfU22cHknAKEF2kquAFQ8vcHP6OM2GNSphpDGt';
-const client = createClient(token);
 
-const defaultParams: IFetchParams = {
-  query: 'Ocean',
-  orientation: 'landscape',
-  size: 'large',
-  color: '',
-  locale: '',
-  page: 1,
-  per_page: 30,
-};
+interface ISearchImage{
+  start:number;
+  count:number;
+  kw:string;
+}
 
-export async function fetchPhoto({ query }: IFetchParams) {
-  const params = {
-    ...defaultParams,
-    query,
-  };
-  const data = await client.photos.search(params);
-  return data;
+export type TImageItem = {
+  id:string;
+  url:string;
+  url_thumb:string;
+}
+
+export type TImageList = Array<TImageItem>
+
+interface ISearchResponse{
+  errno:string;
+  errmsg:string;
+  consume:string;
+  total:string;
+  data:TImageList
+}
+export async function searchImage({start ,count ,kw } :ISearchImage = {start:0,count:0,kw:''}):Promise<ISearchResponse>{
+  const url = `http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=search&start=${start}&count=${count}&kw=${kw}`
+  const data = await fetch(url)
+  return data.json()
 }
