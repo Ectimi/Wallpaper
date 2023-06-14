@@ -5,6 +5,7 @@ declare module '@mui/material/styles' {
         linearGradient: {
             main: string;
             detail:string;
+            grounding:string;
         };
     }
     // allow configuration using `createTheme`
@@ -12,6 +13,7 @@ declare module '@mui/material/styles' {
         linearGradient?: {
             main?: string;
             detail?: string;
+            grounding?:string;
         };
     }
 }
@@ -19,7 +21,8 @@ declare module '@mui/material/styles' {
 const customTheme = createTheme({
     linearGradient:{
         main:'linear-gradient(to right, #3874cb, #3874cb);',
-        detail:'linear-gradient(to right, #457fca, #5691c8);'
+        detail:'linear-gradient(to right, #457fca, #1976d2);',
+        grounding:'linear-gradient(to right, #232526, #414345)'
     }
 })
 

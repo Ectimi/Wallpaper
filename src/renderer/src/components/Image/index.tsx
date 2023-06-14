@@ -1,8 +1,9 @@
 import {useSafeState} from "ahooks";
 import Skeleton from "@mui/material/Skeleton";
+import {CSSProperties} from "react";
 
-export default function Image(props: { src: string, otherProps?: any }) {
-    const {src, otherProps = {}} = props
+export default function Image(props: { src: string, style?: CSSProperties }) {
+    const {src, style = {}} = props
     const [loading, setLoading] = useSafeState(true)
     return <>
         {
@@ -14,11 +15,11 @@ export default function Image(props: { src: string, otherProps?: any }) {
                 height: 'auto',
                 objectFit: 'cover',
                 flexGrow: 1,
-                display: loading ? 'none' : 'block'
+                display: loading ? 'none' : 'block',
+                ...style
             }}
             src={src}
             onLoad={() => setLoading(false)}
-            {...otherProps}
         />
     </>
 }

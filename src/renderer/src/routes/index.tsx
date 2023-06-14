@@ -1,4 +1,4 @@
-import { RefObject, createRef } from 'react';
+import { RefObject, createRef,useRef,Children,cloneElement } from 'react';
 import {
   RouteObject,
   useLocation,
@@ -6,7 +6,7 @@ import {
   useOutlet,
   RouterProvider,
 } from 'react-router-dom';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { CSSTransition as _CSSTransition , SwitchTransition } from 'react-transition-group';
 import { AppLayout } from '@/components/AppLayout';
 import { Prefab } from '@/pages/Prefab';
 import {Detail} from '@/pages/Detail'
@@ -79,6 +79,19 @@ const router = createHashRouter([
     })),
   },
 ]);
+
+//解决 react-transition-group出现的警告 ”findDOMNode is deprecated in StrictMode"
+const CSSTransition = (props: any) => {
+  const nodeRef = useRef(null);
+
+  return (
+      <_CSSTransition {...props} nodeRef={nodeRef}>
+        <>
+          {Children.map(props.children, (child) => cloneElement(child, { ref: nodeRef }))}
+        </>
+      </_CSSTransition>
+  );
+};
 
 function AppRoutes() {
   const location = useLocation();

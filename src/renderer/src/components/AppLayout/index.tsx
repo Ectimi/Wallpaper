@@ -56,7 +56,7 @@ const routeItems: Array<{ name: string; icon: ReactNode; path: string }> = [
     },
 ]
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 const stableStyle = (theme: Theme): CSSObject => ({
     position: 'unset',
     backgroundColor: '#1976d2',

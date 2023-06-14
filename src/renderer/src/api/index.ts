@@ -1,3 +1,4 @@
+import {sendEvent} from './ipc.ts'
 
 interface ISearchImage{
   start:number;
@@ -7,8 +8,10 @@ interface ISearchImage{
 
 export type TImageItem = {
   id:string;
+  resolution:string;
   url:string;
   url_thumb:string;
+  tag:string;
 }
 
 export type TImageList = Array<TImageItem>
@@ -24,4 +27,8 @@ export async function searchImage({start ,count ,kw } :ISearchImage = {start:0,c
   const url = `http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=search&start=${start}&count=${count}&kw=${kw}`
   const data = await fetch(url)
   return data.json()
+}
+
+export function getAllDisplays(){
+  return sendEvent('getAllDisplays')
 }
